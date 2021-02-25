@@ -1,7 +1,6 @@
 package com.thomasvitale.demo.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.thomasvitale.demo.keycloak.KeycloakJackson2Modules;
 
 import org.springframework.beans.factory.BeanClassLoaderAware;
@@ -30,7 +29,6 @@ public class SessionConfig implements BeanClassLoaderAware {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModules(SecurityJackson2Modules.getModules(this.loader));
 		mapper.registerModules(KeycloakJackson2Modules.getModules(this.loader));
-		//mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 		return mapper;
 	}
 

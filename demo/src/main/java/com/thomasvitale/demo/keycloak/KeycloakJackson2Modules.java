@@ -28,6 +28,21 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.log.LogMessage;
 import org.springframework.util.ClassUtils;
 
+/**
+ * This utility class will find all the Keycloak modules in classpath.
+ *
+ * <p>
+ * <pre>
+ *     ObjectMapper mapper = new ObjectMapper();
+ *     mapper.registerModules(KeycloakCoreJackson2Module.getModules());
+ * </pre> Above code is equivalent to
+ * <p>
+ * <pre>
+ *     ObjectMapper mapper = new ObjectMapper();
+ *     mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
+ *     mapper.registerModule(new KeycloakCoreJackson2Module());
+ * </pre>
+ */
 public final class KeycloakJackson2Modules {
 
 	private static final Log logger = LogFactory.getLog(KeycloakJackson2Modules.class);

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.keycloak.KeycloakSecurityContext;
 
 /**
@@ -23,6 +24,7 @@ import org.keycloak.KeycloakSecurityContext;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE,
 		isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonDeserialize(using = KeycloakPrincipleDeserializer.class)
 abstract class KeycloakPrincipalMixin<T extends KeycloakSecurityContext> {
 
 	@JsonCreator

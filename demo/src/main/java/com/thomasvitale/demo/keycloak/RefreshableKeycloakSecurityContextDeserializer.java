@@ -60,11 +60,13 @@ public class RefreshableKeycloakSecurityContextDeserializer extends JsonDeserial
 	}
 
 	private <T> T parseToken(String encoded, Class<T> clazz) throws IOException {
-		if (encoded == null)
+		if (encoded == null || encoded.equals("") || encoded.equals("null"))
 			return null;
 
 		String[] parts = encoded.split("\\.");
-		if (parts.length < 2 || parts.length > 3) throw new IllegalArgumentException("Parsing error");
+		if (parts.length < 2 || parts.length > 3) {
+			throw new IllegalArgumentException("Keycloak token parsing failed for class: " + clazz.getName());
+		}
 
 		byte[] bytes = Base64Url.decode(parts[1]);
 		return JsonSerialization.readValue(bytes, clazz);
