@@ -1,0 +1,1 @@
+# keycloak-spring-adapter-json-serialization
